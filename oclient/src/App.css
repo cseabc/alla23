@@ -1,0 +1,123 @@
+:root {
+  --primary-color: #3f51b5;
+  --secondary-color: #2196f3;
+  --background-color: #f4f4f4;
+  --card-background: #ffffff;
+  --text-color: #333;
+  --error-color: #e74c3c;
+  --shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 20px;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  text-align: center;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  padding: 20px;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+.container {
+  max-width: 600px;
+  background: var(--card-background);
+  margin: 30px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.error-message {
+  background-color: var(--error-color);
+  color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: 15px;
+  text-align: center;
+}
+
+/* Results Display */
+.results-display {
+  margin-top: 20px;
+}
+
+.results-display h2 {
+  text-align: center;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.results-display p {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.results-display table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.results-display th,
+.results-display td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.results-display th {
+  background-color: #e0f7fa;
+}
+
+.results-display tr:nth-child(even) {
+  background-color: #f1f8e9;
+}
+
+.results-display tr:nth-child(odd) {
+  background-color: #e3f2fd;
+}
+
+.footer {
+  text-align: center;
+  background: var(--primary-color);
+  color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: auto;
+}
+
+@media (max-width: 600px) {
+  .header h1 {
+    font-size: 2rem;
+  }
+  .container {
+    width: 90%;
+    padding: 10px;
+  }
+}

@@ -1,0 +1,56 @@
+.
+
+
+
+cd D:\others\ak\engres-final\server
+$env:PORT=5000
+npm start
+
+
+cd D:\others\ak\engres-final\server
+$env:PORT=5001
+npm start
+
+
+cd D:\others\ak\engres-final\server
+$env:PORT=5002
+npm start
+
+
+cd D:\others\ak\engres-final\loadbalancer
+$env:LB_PORT=4000
+npm start
+
+
+cd D:\others\ak\engres-final\client
+$env:PORT=3000
+npm start
+
+
+cd D:\others\ak\engres-final\oserver
+$env:PORT=5100
+npm start
+
+
+cd D:\others\ak\engres-final\oclient
+$env:PORT=3100
+npm start
+
+
+
+with loadbalancer multiple servers
+
+cd D:\others\ak\engres-final
+k6 run b1.js
+
+
+single server only
+
+cd D:\others\ak\engres-final
+k6 run b2.js
+
+
+
+
+
+.
