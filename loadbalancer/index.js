@@ -29,7 +29,7 @@ const backends = backendEnvVars
     if (url) {
       return {
         url: url.trim(),
-        name: serverNames[index] || Server ${index + 1},
+        name: serverNames[index] || `Server ${index + 1}`,
         healthy: false,
         activeConnections: 0,
         totalRequests: 0,
@@ -48,7 +48,7 @@ if (backends.length === 0) {
 const performHealthCheck = async () => {
   for (let backend of backends) {
     try {
-      const response = await axios.get(${backend.url}/health, {
+      const response = await axios.get(`${backend.url}/health`, {
         timeout: 5000,
         httpsAgent: agent,
       });
@@ -58,7 +58,7 @@ const performHealthCheck = async () => {
         try {
           data = JSON.parse(data);
         } catch (parseErr) {
-          console.error(Parsing error for ${backend.url}:, parseErr.message);
+          console.error(`Parsing error for ${backend.url}:`, parseErr.message);
           backend.healthy = false;
           continue;
         }
@@ -67,9 +67,9 @@ const performHealthCheck = async () => {
         data &&
         typeof data.status === 'string' &&
         (data.status.toLowerCase() === 'ok' || data.status.toUpperCase() === 'UP');
-      console.log(${backend.url}: Health check status: ${data.status});
+      console.log(`${backend.url}: Health check status: ${data.status}`);
     } catch (error) {
-      console.error(Health check failed for ${backend.url}:, error.message);
+      console.error(`Health check failed for ${backend.url}:`, error.message);
       backend.healthy = false;
     }
   }
@@ -96,11 +96,11 @@ app.get('/api/results/:rollno', async (req, res) => {
   if (!backend) {
     return res.status(503).json({ message: 'No healthy backend available' });
   }
-  const targetUrl = ${backend.url}/api/results/${rollno};
+  const targetUrl = `${backend.url}/api/results/${rollno}`;
   backend.activeConnections++;
   backend.totalRequests++;
   
-  console.log(Forwarding request for rollno ${rollno} to ${targetUrl});
+  console.log(`Forwarding request for rollno ${rollno} to ${targetUrl}`);
   
   try {
     const response = await axios.get(targetUrl, {
@@ -134,5 +134,5 @@ app.get('/health', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(Load Balancer running on port ${PORT});
+  console.log(`Load Balancer running on port ${PORT}`);
 });
